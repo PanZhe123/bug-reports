@@ -18,58 +18,106 @@ make
 
 ### 4. Asan report
 
-==18376==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fff5dc88504 at pc 0x00000043a144 bp 0x7fff5dc88380 sp 0x7fff5dc87b18
-WRITE of size 300 at 0x7fff5dc88504 thread T0
-    #0 0x43a143 in vsprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1
-    #1 0x43b0c3 in sprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1713:1
-    #2 0x4e000a in WriteMP3GainAPETag /home/cas/asan/mp3gain/mp3gain1.6.2-san/apetag.c:578:3
-    #3 0x4cbfa2 in WriteMP3GainTag /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:1141:3
-    #4 0x4d7f5e in main /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:2723:6
-    #5 0x7f80ba224c86 in __libc_start_main /build/glibc-CVJwZb/glibc-2.27/csu/../csu/libc-start.c:310
-    #6 0x41bc19 in _start (/home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain+0x41bc19)
+###### ==18376==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fff5dc88504 at pc 0x00000043a144 bp 0x7fff5dc88380 sp 0x7fff5dc87b18
 
-Address 0x7fff5dc88504 is located in stack of thread T0 at offset 132 in frame
-    #0 0x4de91f in WriteMP3GainAPETag /home/cas/asan/mp3gain/mp3gain1.6.2-san/apetag.c:404
+###### WRITE of size 300 at 0x7fff5dc88504 thread T0
 
-This frame has 3 object(s):
-    [32, 132) 'valueString' (line 411)
-    [176, 208) 'newFooter' (line 413) <== Memory access at offset 132 partially underflows this variable
-    [240, 272) 'newHeader' (line 414) <== Memory access at offset 132 partially underflows this variable
-HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
-      (longjmp and C++ exceptions *are* supported)
-SUMMARY: AddressSanitizer: stack-buffer-overflow /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1 in vsprintf
-Shadow bytes around the buggy address:
-  0x10006bb89050: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb89060: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb89070: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb89080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb89090: f1 f1 f1 f1 00 00 00 00 00 00 00 00 00 00 00 00
-=>0x10006bb890a0:[04]f2 f2 f2 f2 f2 00 00 00 00 f2 f2 f2 f2 00 00
-  0x10006bb890b0: 00 00 f3 f3 f3 f3 f3 f3 00 00 00 00 00 00 00 00
-  0x10006bb890c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb890d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb890e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x10006bb890f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-Shadow byte legend (one shadow byte represents 8 application bytes):
-  Addressable:           00
-  Partially addressable: 01 02 03 04 05 06 07 
-  Heap left redzone:       fa
-  Freed heap region:       fd
-  Stack left redzone:      f1
-  Stack mid redzone:       f2
-  Stack right redzone:     f3
-  Stack after return:      f5
-  Stack use after scope:   f8
-  Global redzone:          f9
-  Global init order:       f6
-  Poisoned by user:        f7
-  Container overflow:      fc
-  Array cookie:            ac
-  Intra object redzone:    bb
-  ASan internal:           fe
-  Left alloca redzone:     ca
-  Right alloca redzone:    cb
-  Shadow gap:              cc
-==18376==ABORTING
+######     #0 0x43a143 in vsprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1
 
-The poc file is:https://github.com/PanZhe123/bug-reports/blob/main/mp3gain1.6.2/poc
+######     #1 0x43b0c3 in sprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1713:1
+
+######     #2 0x4e000a in WriteMP3GainAPETag /home/cas/asan/mp3gain/mp3gain1.6.2-san/apetag.c:578:3
+
+######     #3 0x4cbfa2 in WriteMP3GainTag /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:1141:3
+
+######     #4 0x4d7f5e in main /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:2723:6
+
+######     #5 0x7f80ba224c86 in __libc_start_main /build/glibc-CVJwZb/glibc-2.27/csu/../csu/libc-start.c:310
+
+######     #6 0x41bc19 in _start (/home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain+0x41bc19)
+
+###### Address 0x7fff5dc88504 is located in stack of thread T0 at offset 132 in frame
+
+######     #0 0x4de91f in WriteMP3GainAPETag /home/cas/asan/mp3gain/mp3gain1.6.2-san/apetag.c:404
+
+###### This frame has 3 object(s):
+
+######     [32, 132) 'valueString' (line 411)
+
+######     [176, 208) 'newFooter' (line 413) <== Memory access at offset 132 partially underflows this variable
+
+######     [240, 272) 'newHeader' (line 414) <== Memory access at offset 132 partially underflows this variable
+
+###### HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+
+######       (longjmp and C++ exceptions *are* supported)
+
+###### SUMMARY: AddressSanitizer: stack-buffer-overflow /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1 in vsprintf
+
+###### Shadow bytes around the buggy address:
+
+######   0x10006bb89050: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb89060: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb89070: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb89080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb89090: f1 f1 f1 f1 00 00 00 00 00 00 00 00 00 00 00 00
+
+###### =>0x10006bb890a0:[04]f2 f2 f2 f2 f2 00 00 00 00 f2 f2 f2 f2 00 00
+
+######   0x10006bb890b0: 00 00 f3 f3 f3 f3 f3 f3 00 00 00 00 00 00 00 00
+
+######   0x10006bb890c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb890d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb890e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+######   0x10006bb890f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+###### Shadow byte legend (one shadow byte represents 8 application bytes):
+
+######   Addressable:           00
+
+######   Partially addressable: 01 02 03 04 05 06 07 
+
+######   Heap left redzone:       fa
+
+######   Freed heap region:       fd
+
+######   Stack left redzone:      f1
+
+######   Stack mid redzone:       f2
+
+######   Stack right redzone:     f3
+
+######   Stack after return:      f5
+
+######   Stack use after scope:   f8
+
+######   Global redzone:          f9
+
+######   Global init order:       f6
+
+######   Poisoned by user:        f7
+
+######   Container overflow:      fc
+
+######   Array cookie:            ac
+
+######   Intra object redzone:    bb
+
+######   ASan internal:           fe
+
+######   Left alloca redzone:     ca
+
+######   Right alloca redzone:    cb
+
+######   Shadow gap:              cc
+
+###### ==18376==ABORTING
+
+###### The poc file is:https://github.com/PanZhe123/bug-reports/blob/main/mp3gain1.6.2/poc
