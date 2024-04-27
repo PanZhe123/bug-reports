@@ -20,11 +20,12 @@ make
 
 ### 4. Asan report
 
+```
 ==18376==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fff5dc88504 at pc 0x00000043a144 bp 0x7fff5dc88380 sp 0x7fff5dc87b18
 
 WRITE of size 300 at 0x7fff5dc88504 thread T0
 
-​	#0 0x43a143 in vsprintf /home/cas/llvm12/compiler-rt/liz/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1
+	#0 0x43a143 in vsprintf /home/cas/llvm12/compiler-rt/liz/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1
 
 ​	#1 0x43b0c3 in sprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1713:1
 
@@ -55,5 +56,6 @@ HINT: this may be a false positive if your program uses some custom stack unwind
 ​	(longjmp and C++ exceptions *are* supported)
 
 SUMMARY: AddressSanitizer: stack-buffer-overflow /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1 in vsprintf
+```
 
 The poc file is:https://github.com/PanZhe123/bug-reports/blob/main/mp3gain1.6.2/poc
