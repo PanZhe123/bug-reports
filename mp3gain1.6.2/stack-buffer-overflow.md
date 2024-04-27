@@ -2,11 +2,11 @@
 
 #### 1. Environment
 
-##### Ubuntu 18.04, 64 bit
+Ubuntu 18.04, 64 bit
 
-##### mp3gain 1.6.2
+mp3gain 1.6.2
 
-##### Clang 12.00
+Clang 12.00
 
 #### 2. Compilation
 
