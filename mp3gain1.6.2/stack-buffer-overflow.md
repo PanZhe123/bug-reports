@@ -18,19 +18,19 @@ make
 
 ### 4. Asan report
 
-###### ==18376==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fff5dc88504 at pc 0x00000043a144 bp 0x7fff5dc88380 sp 0x7fff5dc87b18
+==18376==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fff5dc88504 at pc 0x00000043a144 bp 0x7fff5dc88380 sp 0x7fff5dc87b18
 
-###### WRITE of size 300 at 0x7fff5dc88504 thread T0
+WRITE of size 300 at 0x7fff5dc88504 thread T0
 
-######     #0 0x43a143 in vsprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1
+​    #0 0x43a143 in vsprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1
 
-######     #1 0x43b0c3 in sprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1713:1
+​    #1 0x43b0c3 in sprintf /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1713:1
 
-######     #2 0x4e000a in WriteMP3GainAPETag /home/cas/asan/mp3gain/mp3gain1.6.2-san/apetag.c:578:3
+​    #2 0x4e000a in WriteMP3GainAPETag /home/cas/asan/mp3gain/mp3gain1.6.2-san/apetag.c:578:3
 
-######     #3 0x4cbfa2 in WriteMP3GainTag /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:1141:3
+​    #3 0x4cbfa2 in WriteMP3GainTag /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:1141:3
 
-######     #4 0x4d7f5e in main /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:2723:6
+​    #4 0x4d7f5e in main /home/cas/asan/mp3gain/mp3gain1.6.2-san/mp3gain.c:2723:6
 
 ######     #5 0x7f80ba224c86 in __libc_start_main /build/glibc-CVJwZb/glibc-2.27/csu/../csu/libc-start.c:310
 
