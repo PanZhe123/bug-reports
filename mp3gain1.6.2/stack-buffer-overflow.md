@@ -71,3 +71,5 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Right alloca redzone:    cb
   Shadow gap:              cc
 ==18376==ABORTING
+
+The poc file is:https://github.com/PanZhe123/bug-reports/blob/main/mp3gain1.6.2/poc
