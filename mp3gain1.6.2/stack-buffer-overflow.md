@@ -52,7 +52,7 @@ This frame has 3 object(s):
 
 HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
 
- 	(longjmp and C++ exceptions *are* supported)
+​	(longjmp and C++ exceptions *are* supported)
 
 SUMMARY: AddressSanitizer: stack-buffer-overflow /home/cas/llvm12/compiler-rt/lib/asan/../sanitizer_common/sanitizer_common_interceptors.inc:1670:1 in vsprintf
 
